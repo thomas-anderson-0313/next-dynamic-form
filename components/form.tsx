@@ -1,9 +1,12 @@
 import React from 'react'
 import TextField from '@mui/material/TextField';
-import MenuItem from '@material-ui/core/MenuItem'
+import MenuItem from '@mui/material/MenuItem'
 import Box from '@mui/material/Box';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+
+const getUrl = process.env.NEXT_PUBLIC_GET_URL || '';
+const postEndpoint = process.env.NEXT_PUBLIC_POST_ENDPOINT || '';
 
 const Form = ()=> {
     const [firstName, setFirstName] = React.useState('');
@@ -23,7 +26,7 @@ const Form = ()=> {
 
 
     const getData = async() => {
-        const data = await fetch('https://ulventech-react-exam.netlify.app/api/form').then((res) => res.json())
+        const data = await fetch(getUrl).then((res) => res.json())
         for(let i:any = 0; i<=data.data?.length-1; i++){
             if(data.data[i]?.fieldName==="firstName"){
                 setFirstName(data.data[i]?.value)
@@ -102,7 +105,7 @@ const Form = ()=> {
         }
     
         // Send the form data to our API and get a response.
-        const response = await fetch('https://ulventech-react-exam.netlify.app/api/form', {
+        const response = await fetch(postEndpoint, {
           // Body of the request is the JSON data we created above.
           body: JSON.stringify(data),
           // Tell the server we're sending JSON.

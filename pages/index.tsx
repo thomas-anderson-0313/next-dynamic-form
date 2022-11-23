@@ -1,17 +1,18 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import {Container, Typography } from '@material-ui/core';
+import {Container, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import { createTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { createTheme, ThemeProvider } from '@mui/material';
 
 import Bar from '../components/appBar'
 import Form from '../components/form';
 
+const themeColor = process.env.NEXT_PUBLIC_THEME_COLOR || ''
+
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#673ab7',
+      main: themeColor,
     },
   },
 });
